@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<!--
+''' 
+    Purpose: Perform Projection of LIDAR Poincloud Onto To Image After Extrincsic Calibration is Done
+    Subscribed topics: None
+    Pulished topic: None
+
+    Project: WATonoBus
+    Author: Neel Bhatt
+    Date: Feb 26, 2022
+    Do not share, copy, or use without seeking permission from the author
+'''
+-->
+
+<launch>
+    <node pkg="calib_lidar_cam" name="l2c_projection" type="lidar_camera_projection.py" output="screen">
+        <param name="lidar_topic" value="/rslidar_points_front" />
+        <param name="lidar_frame_id" value="rslidar_front" />
+        <param name="cam_topic" value="/pylon_camera_node_left_infra/image_rect" />
+        <param name="cam_transport" value="compressed" />
+
+        <!-- Camera Extrinsics -->
+        <param name="transform_directory" value="/home/$(env USERNAME)/catkin_ws/src/calib_lidar_cam/Results/C_T_L.npy" />
+        <param name="proj_directory" value="/home/$(env USERNAME)/catkin_ws/src/calib_lidar_cam/Results/C_proj_L_.npy" />
+
+    </node>
+</launch>

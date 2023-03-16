@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<!--
+''' 
+    Purpose: Perform Extrinsic Calibration Between LIDAR and Camera
+    Subscribed topics: None
+    Pulished topic: None
+
+    Project: WATonoBus
+    Author: Neel Bhatt
+    Date: Feb 26, 2023
+    Do not share, copy, or use without seeking permission from the author
+'''
+-->
+
+<launch>
+    <node pkg="calib_lidar_cam" name="calib_l2c_transform" type="calib_l2c.py" output="screen">
+        <param name="transform_from_frame" value="lidar_frame"/>
+        <param name="transform_to_frame" value="cam_frame"/>
+
+        <!-- Left and right projection_matrix obtained from intrinsic calibration (ost.yaml file) -->
+        <!-- ** DO NOT USE camera_matrix from ost.yaml file as it doesn't include distortion parameters
+             and hence running projection on rect image will not be correct ** -->
+
+        <param name="K" value="[951.07184,0.0,370.30464,0.0,0.0, 956.81738, 663.31639,0.0,0.0,0.0,1.0,0.0]" />
+
+
+
+
+		
+        <param name="transform_filename" value="C_T_L"/>
+        <param name="proj_filename" value="C_proj_L"/>
+    </node>
+</launch>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<!--
+''' 
+    Purpose: Perform Projection of LIDAR Poincloud Onto To Image
+    Subscribed topics: None
+    Pulished topic: None
+
+    Project: WATonoBus
+    Author: Neel Bhatt
+    Date: Feb 26, 2023
+    Do not share, copy, or use without seeking permission from the author
+'''
+-->
+
+<launch>
+    <node pkg="calib_lidar_cam" name="calib_l2c_projection" type="calib-projection-realtime.py" output="screen">
+        <param name="lidar_topic" value="/lidar_topic" />
+        <param name="lidar_frame_id" value="lidar_frame" />
+        <param name="cam_topic" value="/cam_topic/image_rect" />
+        <param name="cam_transport" value="compressed" />
+    </node>
+</launch>
